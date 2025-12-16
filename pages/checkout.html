@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your order - Review cart, enter details and checkout via WhatsApp.">
+    <title>Checkout | Lombardia Delivery</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">🍕</span>
+                <span>Lombardia</span>
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="pizzas.html" class="nav-link">Pizzas</a></li>
+                    <li><a href="burgers.html" class="nav-link">Burgers</a></li>
+                    <li><a href="drinks.html" class="nav-link">Drinks</a></li>
+                    <li><a href="checkout.html" class="nav-link active">Checkout</a></li>
+                </ul>
+            </nav>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="checkout.html" class="cart-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Cart</span>
+                    <span class="cart-count hidden">0</span>
+                </a>
+                
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <ul class="mobile-nav-list">
+            <li><a href="../index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="pizzas.html" class="mobile-nav-link">Pizzas</a></li>
+            <li><a href="burgers.html" class="mobile-nav-link">Burgers</a></li>
+            <li><a href="drinks.html" class="mobile-nav-link">Drinks</a></li>
+            <li><a href="checkout.html" class="mobile-nav-link active">Checkout</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Checkout Content -->
+    <main class="checkout-page">
+        <div class="checkout-container">
+            <!-- Cart Section -->
+            <div class="checkout-cart">
+                <div class="cart-header">
+                    <h2><i class="fas fa-shopping-bag"></i> Your Order</h2>
+                    <a href="pizzas.html" class="btn btn-secondary btn-sm">+ Add More</a>
+                </div>
+                
+                <!-- Empty Cart Message -->
+                <div class="cart-empty" style="display: none;">
+                    <i class="fas fa-shopping-basket"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Add some delicious items to get started!</p>
+                    <a href="pizzas.html" class="btn btn-primary" style="margin-top: 1rem;">Browse Menu</a>
+                </div>
+                
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <!-- Populated by JavaScript -->
+                </div>
+                
+                <!-- Coupon Section -->
+                <div class="coupon-section">
+                    <label style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; display: block;">Have a coupon?</label>
+                    <div class="coupon-input-group">
+                        <input type="text" id="coupon-input" placeholder="Enter coupon code">
+                        <button id="apply-coupon" class="btn btn-secondary btn-sm">Apply</button>
+                    </div>
+                    <p class="coupon-message"></p>
+                    <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 0.5rem;">Try: WELCOME10 (10% off) or FREESHIP (free delivery)</p>
+                </div>
+                
+                <!-- Cart Summary -->
+                <div class="cart-summary" style="display: none;">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span class="summary-subtotal">£0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span class="summary-delivery">£0.00</span>
+                    </div>
+                    <div class="summary-row discount summary-discount-row" style="display: none;">
+                        <span>Discount</span>
+                        <span class="summary-discount">-£0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span class="summary-total">£0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Customer Form -->
+            <div class="checkout-form">
+                <div class="form-header">
+                    <h2><i class="fas fa-user"></i> Delivery Details</h2>
+                    <p style="color: var(--color-text-muted);">Fill in your details to complete the order</p>
+                </div>
+                
+                <!-- Delivery Time Display -->
+                <div class="delivery-time-display">
+                    <i class="fas fa-clock"></i>
+                    <span>Estimated delivery: <strong class="delivery-time">35–50 min</strong></span>
+                </div>
+                
+                <form onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label for="fullname">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                        <span class="form-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., 07123 456789" required>
+                        <span class="form-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Delivery Address <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" placeholder="Street address" required>
+                        <span class="form-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postcode">Postcode <span class="required">*</span></label>
+                        <input type="text" id="postcode" name="postcode" placeholder="e.g., SW1A 1AA" required>
+                        <span class="form-error"></span>
+                        <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 0.25rem;">Delivery fee based on postcode</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Order Notes (Optional)</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions for your order..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Payment Method <span class="required">*</span></label>
+                        <div class="payment-options">
+                            <div class="payment-option selected" data-method="card">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Card</span>
+                            </div>
+                            <div class="payment-option" data-method="cash">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Cash</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group change-input" style="display: none;">
+                        <label for="change-for">Need change for? (Optional)</label>
+                        <input type="text" id="change-for" name="change-for" placeholder="e.g., £20">
+                    </div>
+                    
+                    <!-- WhatsApp Order Button -->
+                    <button type="button" class="whatsapp-btn" onclick="handleWhatsAppOrder()">
+                        <i class="fab fa-whatsapp"></i>
+                        Finalize Order on WhatsApp
+                    </button>
+                    
+                    <p style="text-align: center; font-size: 0.8rem; color: var(--color-text-muted); margin-top: 1rem;">
+                        You'll be redirected to WhatsApp to confirm your order
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🍕 Lombardia Delivery</h4>
+                    <p>Premium pizza & burgers crafted with passion and delivered fresh to your door.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="pizzas.html">Pizzas</a>
+                    <a href="burgers.html">Burgers</a>
+                    <a href="drinks.html">Drinks</a>
+                    <a href="checkout.html">Checkout</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> 123 High Street<br>
+                        London, SW1A 1AA
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i> +44 20 7123 4567
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Opening Hours</h4>
+                    <p>
+                        Mon - Thu: 11:00 - 22:00<br>
+                        Fri - Sat: 11:00 - 23:00<br>
+                        Sunday: 12:00 - 21:00
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lombardia Delivery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/447000000000" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp us</span>
+    </a>
+    
+    <!-- Scripts -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
